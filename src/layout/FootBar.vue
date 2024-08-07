@@ -1,9 +1,5 @@
 <template>
   <v-footer :app="true">
-    <v-row justify="center">
-      <v-col align-self="center">
-        {{ new Date().getFullYear() }} - <strong>ThreeBai</strong>
-      </v-col>
-    </v-row>
+    {{ new Date().getFullYear() }} - <strong>@ThreeBai</strong> - All rights reserved.
   </v-footer>
 </template>

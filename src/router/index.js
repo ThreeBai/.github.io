@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "../layout/index.vue";
 import Dashboard from "../views/Dashboard/index.vue";
 import GameCenter from "../views/GameCenter/index.vue";
+import { mdiHome, mdiGamepadVariantOutline, mdiBookshelf, mdiTelevisionClassic } from "@mdi/js";
 
 const MainRoutes = [
   {
@@ -9,7 +10,8 @@ const MainRoutes = [
     name: "dashboard",
     component: Dashboard,
     meta: {
-      label: "Dashboard"
+      label: "Dashboard",
+      icon: mdiHome
     }
   },
   {
@@ -17,7 +19,8 @@ const MainRoutes = [
     name: "gamecenter",
     component: GameCenter,
     meta: {
-      label: "Play with me"
+      label: "Play with me",
+      icon: mdiGamepadVariantOutline
     }
   }
 ];

@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "../layout/index.vue";
 import Dashboard from "../views/Dashboard/index.vue";
 import GameCenter from "../views/GameCenter/index.vue";
+import LiquorFish from "../views/NeuroRoam/LiquorFish/index.vue";
 import { mdiHome, mdiGamepadVariantOutline, mdiBookshelf, mdiTelevisionClassic } from "@mdi/js";
 
 const MainRoutes = [
@@ -21,6 +22,25 @@ const MainRoutes = [
     meta: {
       label: "Play with me",
       icon: mdiGamepadVariantOutline
+    }
+  },
+  {
+    path: "/neuronroam",
+    name: "neuronroam",
+    children: [
+      {
+        path: "liquorfish",
+        name: "liquorfish",
+        component: LiquorFish,
+        meta: {
+          label: "liquorfish"
+        }
+      }
+    ],
+    meta: {
+      label: "Neuron Roam",
+      icon: mdiBookshelf,
+      secondRoute: true
     }
   }
 ];

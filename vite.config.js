@@ -18,8 +18,8 @@ export default defineConfig({
     preprocessorOptions: {
       // define global scss variable
       scss: {
-        javascriptEnabled: true
-        // additionalData: `@use "@/styles/variables.scss" as *;`
+        javascriptEnabled: true,
+        additionalData: `@use "@/styles/variables.scss" as *;`
       }
     }
   }

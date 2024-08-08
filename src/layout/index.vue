@@ -1,24 +1,30 @@
 <template>
   <v-layout>
     <LeftNav></LeftNav>
-
     <v-main>
-      <router-view></router-view>
+      <div class="main_container">
+        <router-view></router-view>
+      </div>
     </v-main>
-    <!-- <v-navigation-drawer location="right">
-      <v-list>
-        <v-list-item title="Drawer right"></v-list-item>
-      </v-list>
-    </v-navigation-drawer> -->
+    <RightNav v-if="showSecondRoute"></RightNav>
     <FootBar></FootBar>
   </v-layout>
 </template>
 <script setup>
 import LeftNav from "./LeftNav.vue";
+import RightNav from "./RightNav.vue";
 import FootBar from "./FootBar.vue";
-import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
+import { computed } from "vue";
 
-const router = useRouter();
-console.log(router, "reouttt");
+const route = useRoute();
+
+const showSecondRoute = computed(() => {
+  return route.meta.secondRoute;
+});
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.main_container {
+  padding: 60px 30px 20px 30px;
+}
+</style>

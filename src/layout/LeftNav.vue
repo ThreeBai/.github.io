@@ -38,17 +38,24 @@ import { mdiGithub, mdiEmail, mdiThemeLightDark } from "@mdi/js";
 import { Menu } from "@/router/index";
 import { useRouter, useRoute } from "vue-router";
 import { useTheme } from "vuetify";
+import { useStyleSettingStore } from "@/stores";
 
 const route = useRoute();
 const router = useRouter();
+const styleSettingStore = useStyleSettingStore();
 
 const handleMenuClick = (routeInfos) => {
-  router.push(routeInfos.path);
+  console.log(routeInfos, route, "aaa");
+  if (route.path.indexOf(routeInfos.path) === -1) {
+    router.push(routeInfos.path);
+  }
 };
 
 const theme = useTheme();
 function changeTheme() {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+  const newTheme = theme.global.current.value.dark ? "light" : "dark";
+  styleSettingStore.changeSysTheme(newTheme);
+  theme.global.name.value = newTheme;
 }
 
 function toEmail() {}

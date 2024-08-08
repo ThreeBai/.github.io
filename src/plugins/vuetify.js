@@ -6,7 +6,7 @@ import * as directives from "vuetify/directives";
 import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 
 // create vuetify
-export const vuetify = createVuetify({
+const vuetify = createVuetify({
   blueprint: md3,
   components,
   directives,
@@ -21,3 +21,7 @@ export const vuetify = createVuetify({
     }
   }
 });
+
+export function setVuetify(app) {
+  app.use(vuetify);
+}

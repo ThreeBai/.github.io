@@ -209,4 +209,4 @@ module.exports = {
     "wrap-regex": 0,
     yoda: [2, "never"]
   }
-}
+};

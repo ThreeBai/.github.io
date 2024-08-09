@@ -1,13 +1,15 @@
 <template>
-  <v-layout>
+  <v-layout class="layout_wrapper">
     <LeftNav></LeftNav>
     <v-main>
       <div class="main_container">
         <router-view></router-view>
+
+        <RightNav v-if="showSecondRoute"></RightNav>
       </div>
+
+      <FootBar></FootBar>
     </v-main>
-    <RightNav v-if="showSecondRoute"></RightNav>
-    <FootBar></FootBar>
   </v-layout>
 </template>
 <script setup>
@@ -24,7 +26,13 @@ const showSecondRoute = computed(() => {
 });
 </script>
 <style scoped lang="scss">
+.layout_wrapper {
+  height: 100%;
+}
 .main_container {
   padding: 60px 30px 20px 30px;
+  min-width: 600px;
+  overflow-x: auto;
+  min-height: calc(100% - 41px);
 }
 </style>

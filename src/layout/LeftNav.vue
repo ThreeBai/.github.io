@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer floating permanent>
+  <v-navigation-drawer floating permanent class="border-e-sm">
     <template v-slot:prepend>
       <div class="nav_header">
         <img id="avatar_img" src="/src/assets/avatar.jpg" />

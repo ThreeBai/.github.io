@@ -4,26 +4,14 @@
     <v-main>
       <div class="main_container">
         <router-view></router-view>
-
-        <RightNav v-if="showSecondRoute"></RightNav>
       </div>
-
       <FootBar></FootBar>
     </v-main>
   </v-layout>
 </template>
 <script setup>
 import LeftNav from "./LeftNav.vue";
-import RightNav from "./RightNav.vue";
 import FootBar from "./FootBar.vue";
-import { useRoute } from "vue-router";
-import { computed } from "vue";
-
-const route = useRoute();
-
-const showSecondRoute = computed(() => {
-  return route.meta.secondRoute;
-});
 </script>
 <style scoped lang="scss">
 .layout_wrapper {

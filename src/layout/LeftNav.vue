@@ -8,14 +8,32 @@
       </div>
     </template>
     <v-list density="compact" nav>
-      <v-list-item
-        v-for="item in Menu"
-        :key="item.name"
-        :title="item.meta.label"
-        :prepend-icon="item.meta.icon"
-        :value="item"
-        @click="handleMenuClick(item)"
-      ></v-list-item>
+      <template v-for="item in Menu" :key="item.name">
+        <v-list-group v-if="item.children">
+          <template v-slot:activator="{ props }">
+            <v-list-item
+              v-bind="props"
+              :prepend-icon="item.meta.icon"
+              :title="item.meta.label"
+            ></v-list-item>
+          </template>
+          <v-list-item
+            v-for="initem in item.children"
+            :key="initem.name"
+            :prepend-icon="initem.meta.icon"
+            :title="initem.meta.label"
+            :value="initem.name"
+            @click="handleMenuClick(initem)"
+          ></v-list-item>
+        </v-list-group>
+        <v-list-item
+          v-else
+          :title="item.meta.label"
+          :prepend-icon="item.meta.icon"
+          :value="item"
+          @click="handleMenuClick(item)"
+        ></v-list-item>
+      </template>
     </v-list>
     <template v-slot:append>
       <div class="nav_footer">
@@ -45,9 +63,8 @@ const router = useRouter();
 const styleSettingStore = useStyleSettingStore();
 
 const handleMenuClick = (routeInfos) => {
-  console.log(routeInfos, route, "aaa");
   if (route.path.indexOf(routeInfos.path) === -1) {
-    router.push(routeInfos.path);
+    router.push({ name: routeInfos.name });
   }
 };
 

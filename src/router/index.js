@@ -3,6 +3,7 @@ import Layout from "../layout/index.vue";
 import Dashboard from "../views/Dashboard/index.vue";
 import GameCenter from "../views/GameCenter/index.vue";
 import LiquorFish from "../views/NeuroRoam/LiquorFish/index.vue";
+import RussianLiterature from "../views/NeuroRoam/RussianLiterature/index.vue";
 import { mdiHome, mdiGamepadVariantOutline, mdiBookshelf, mdiTelevisionClassic } from "@mdi/js";
 
 const MainRoutes = [
@@ -34,6 +35,14 @@ const MainRoutes = [
         component: LiquorFish,
         meta: {
           label: "liquorfish"
+        }
+      },
+      {
+        path: "russianliterature",
+        name: "russianliterature",
+        component: RussianLiterature,
+        meta: {
+          label: "RussianLiterature"
         }
       }
     ],

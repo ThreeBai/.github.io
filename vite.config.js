@@ -16,10 +16,10 @@ export default defineConfig({
   css: {
     // CSS 预处理器
     preprocessorOptions: {
-      // define global scss variable
-      scss: {
+      // define global less variable
+      less: {
         javascriptEnabled: true,
-        additionalData: `@use "@/styles/variables.scss" as *;`
+        modifyVars: {}
       }
     }
   }

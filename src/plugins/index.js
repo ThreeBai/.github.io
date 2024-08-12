@@ -1,11 +1,11 @@
 // 集中管理vue-app插件
-import { setVuetify } from "./vuetify.js";
+import { setAntd } from "./antDesign.js";
 import { setStore } from "@/stores";
 
 export default {
   install(app) {
-    // vuetify-plugins
-    setVuetify(app);
+    // antd
+    setAntd(app);
     // store
     setStore(app);
   }

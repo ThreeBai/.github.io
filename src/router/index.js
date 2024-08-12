@@ -30,19 +30,19 @@ const MainRoutes = [
     name: "neuronroam",
     children: [
       {
-        path: "liquorfish",
-        name: "liquorfish",
-        component: LiquorFish,
-        meta: {
-          label: "liquorfish"
-        }
-      },
-      {
         path: "russianliterature",
         name: "russianliterature",
         component: RussianLiterature,
         meta: {
           label: "RussianLiterature"
+        }
+      },
+      {
+        path: "liquorfish",
+        name: "liquorfish",
+        component: LiquorFish,
+        meta: {
+          label: "liquorfish"
         }
       }
     ],

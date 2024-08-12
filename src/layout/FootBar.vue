@@ -1,10 +1,10 @@
 <template>
-  <v-footer class="border-t-sm foot">
+  <a-layout-footer class="foot">
     {{ new Date().getFullYear() }} - <strong>@ThreeBai</strong> - All rights reserved.
-  </v-footer>
+  </a-layout-footer>
 </template>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .foot {
-  justify-content: center;
+  text-align: center;
 }
 </style>

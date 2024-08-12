@@ -1,84 +1,98 @@
 <template>
-  <v-navigation-drawer floating permanent class="border-e-sm">
-    <template v-slot:prepend>
+  <a-layout-sider width="280">
+    <div class="sider_wrapper">
       <div class="nav_header">
         <img id="avatar_img" src="/src/assets/avatar.jpg" />
         <h1 class="owner_name">ThreeBai</h1>
         <p class="owner_intro">welcome to my internet villa</p>
       </div>
-    </template>
-    <v-list density="compact" nav>
-      <template v-for="item in Menu" :key="item.name">
-        <v-list-group v-if="item.children">
-          <template v-slot:activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              :prepend-icon="item.meta.icon"
-              :title="item.meta.label"
-            ></v-list-item>
-          </template>
-          <v-list-item
-            v-for="initem in item.children"
-            :key="initem.name"
-            :prepend-icon="initem.meta.icon"
-            :title="initem.meta.label"
-            :value="initem.name"
-            @click="handleMenuClick(initem)"
-          ></v-list-item>
-        </v-list-group>
-        <v-list-item
-          v-else
-          :title="item.meta.label"
-          :prepend-icon="item.meta.icon"
-          :value="item"
-          @click="handleMenuClick(item)"
-        ></v-list-item>
-      </template>
-    </v-list>
-    <template v-slot:append>
+      <a-menu v-model:selectedKeys="currentRoute" mode="inline" style="flex-grow: 1">
+        <template v-for="item in Menu">
+          <a-sub-menu v-if="item.children" :key="item.path">
+            <template #title>
+              <span>
+                <!-- <user-outlined /> -->
+                <span>{{ item.meta.label }}</span>
+              </span>
+            </template>
+            <a-menu-item
+              @click="handleMenuClick(initem)"
+              v-for="initem in item.children"
+              :key="initem.name"
+            >
+              {{ initem.meta.label }}
+            </a-menu-item>
+          </a-sub-menu>
+          <a-menu-item v-else @click="handleMenuClick(item)" :key="item.name">
+            <!-- <pie-chart-outlined /> -->
+            <span>{{ item.meta.label }}</span>
+          </a-menu-item>
+        </template>
+      </a-menu>
       <div class="nav_footer">
         <a href="javascript:;">
-          <v-icon :icon="mdiThemeLightDark" class="fun_icon" @click="changeTheme"></v-icon>
+          <icon @click="changeTheme" class="fun_icon">
+            <template #component>
+              <svg fill="currentColor">
+                <path :d="mdiThemeLightDark" />
+              </svg>
+            </template>
+          </icon>
         </a>
         <a href="https://github.com/ThreeBai" target="_blank">
-          <v-icon :icon="mdiGithub" class="fun_icon"></v-icon>
+          <icon @click="changeTheme" class="fun_icon">
+            <template #component>
+              <svg fill="currentColor">
+                <path :d="mdiGithub" />
+              </svg>
+            </template>
+          </icon>
         </a>
         <a href="mailto:Sakatazwj@outlook.com">
-          <v-icon :icon="mdiEmail" class="fun_icon" @click="toEmail"></v-icon>
+          <icon @click="changeTheme" class="fun_icon">
+            <template #component>
+              <svg fill="currentColor">
+                <path :d="mdiEmail" />
+              </svg>
+            </template>
+          </icon>
         </a>
       </div>
-    </template>
-  </v-navigation-drawer>
+    </div>
+  </a-layout-sider>
 </template>
 
 <script setup>
-import { mdiGithub, mdiEmail, mdiThemeLightDark } from "@mdi/js";
 import { Menu } from "@/router/index";
 import { useRouter, useRoute } from "vue-router";
-import { useTheme } from "vuetify";
 import { useStyleSettingStore } from "@/stores";
+import Icon from "@ant-design/icons-vue";
+import { mdiGithub, mdiEmail, mdiThemeLightDark } from "@mdi/js";
+import { ref } from "vue";
 
 const route = useRoute();
 const router = useRouter();
 const styleSettingStore = useStyleSettingStore();
 
+const currentRoute = ref([""]);
 const handleMenuClick = (routeInfos) => {
   if (route.path.indexOf(routeInfos.path) === -1) {
     router.push({ name: routeInfos.name });
   }
 };
 
-const theme = useTheme();
 function changeTheme() {
-  const newTheme = theme.global.current.value.dark ? "light" : "dark";
-  styleSettingStore.changeSysTheme(newTheme);
-  theme.global.name.value = newTheme;
+  //  待开发
+  styleSettingStore.changeSysTheme("dark");
 }
-
-function toEmail() {}
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
+.sider_wrapper {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
 .nav_header {
   padding: 0 10px 0 40px;
   margin: 40px 0 20px 0;
@@ -96,15 +110,20 @@ function toEmail() {}
   }
 }
 .nav_footer {
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   padding: 5px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 .fun_icon {
-  :hover {
-    border: solid 1px;
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+  &:hover {
     padding: 1px;
+    border: solid 1px;
     border-radius: 50%;
     cursor: pointer;
   }

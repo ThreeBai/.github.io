@@ -1,8 +1,13 @@
 import { defineStore } from "pinia";
-import { ref, watch } from "vue";
+import { reactive, ref, watch } from "vue";
+import { themeConfigs } from "@/styles/themeConfig";
 
 export const useStyleSettingStore = defineStore("styleSetting", () => {
-  const sysTheme = ref("sysTheme", "dark");
+  const sysTheme = ref("dark");
+  const themeConfig = reactive({
+    algorithm: themeConfigs.dark.darkAlgorithm,
+    token: themeConfigs.dark.token
+  });
 
   watch([sysTheme], ([newSysTheme], [oldSysTheme]) => {
     if (newSysTheme !== oldSysTheme) {
@@ -11,6 +16,8 @@ export const useStyleSettingStore = defineStore("styleSetting", () => {
       } else {
         document.documentElement.classList.remove("dark");
       }
+      themeConfig.algorithm = themeConfigs[newSysTheme].algorithm;
+      themeConfig.token = themeConfigs[newSysTheme].token;
     }
   });
   function changeSysTheme(val) {
@@ -18,6 +25,7 @@ export const useStyleSettingStore = defineStore("styleSetting", () => {
   }
   return {
     sysTheme,
+    themeConfig,
     changeSysTheme
   };
 });

@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider width="280">
+  <a-layout-sider width="280" theme="light">
     <div class="sider_wrapper">
       <div class="nav_header">
         <img id="avatar_img" src="/src/assets/avatar.jpg" />
@@ -40,7 +40,7 @@
           </icon>
         </a>
         <a href="https://github.com/ThreeBai" target="_blank">
-          <icon @click="changeTheme" class="fun_icon">
+          <icon class="fun_icon">
             <template #component>
               <svg fill="currentColor">
                 <path :d="mdiGithub" />
@@ -49,7 +49,7 @@
           </icon>
         </a>
         <a href="mailto:Sakatazwj@outlook.com">
-          <icon @click="changeTheme" class="fun_icon">
+          <icon class="fun_icon">
             <template #component>
               <svg fill="currentColor">
                 <path :d="mdiEmail" />
@@ -65,6 +65,7 @@
 <script setup>
 import { Menu } from "@/router/index";
 import { useRouter, useRoute } from "vue-router";
+import { storeToRefs } from "pinia";
 import { useStyleSettingStore } from "@/stores";
 import Icon from "@ant-design/icons-vue";
 import { mdiGithub, mdiEmail, mdiThemeLightDark } from "@mdi/js";
@@ -73,8 +74,11 @@ import { ref } from "vue";
 const route = useRoute();
 const router = useRouter();
 const styleSettingStore = useStyleSettingStore();
+const { sysTheme } = storeToRefs(styleSettingStore);
 
 const currentRoute = ref([""]);
+currentRoute.value.push(route.name);
+
 const handleMenuClick = (routeInfos) => {
   if (route.path.indexOf(routeInfos.path) === -1) {
     router.push({ name: routeInfos.name });
@@ -82,8 +86,8 @@ const handleMenuClick = (routeInfos) => {
 };
 
 function changeTheme() {
-  //  待开发
-  styleSettingStore.changeSysTheme("dark");
+  const targetTheme = sysTheme.value === "dark" ? "light" : "dark";
+  styleSettingStore.changeSysTheme(targetTheme);
 }
 </script>
 

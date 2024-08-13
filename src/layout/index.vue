@@ -1,9 +1,5 @@
 <template>
-  <a-config-provider
-    :theme="{
-      algorithm: theme.darkAlgorithm
-    }"
-  >
+  <a-config-provider :theme="themeConfig">
     <a-layout class="layout_wrapper">
       <LeftNav></LeftNav>
       <a-layout>
@@ -16,9 +12,13 @@
   </a-config-provider>
 </template>
 <script setup>
-import { theme } from "ant-design-vue";
+import { useStyleSettingStore } from "@/stores";
+import { storeToRefs } from "pinia";
 import LeftNav from "./LeftNav.vue";
 import FootBar from "./FootBar.vue";
+
+const styleSettingStore = useStyleSettingStore();
+const { themeConfig } = storeToRefs(styleSettingStore);
 </script>
 <style scoped lang="less">
 .layout_wrapper {

@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider width="280" theme="light">
+  <a-layout-sider width="280" theme="light" style="height: 100vh; position: fixed">
     <div class="sider_wrapper">
       <div class="nav_header">
         <img id="avatar_img" src="/src/assets/avatar.jpg" />
@@ -31,31 +31,25 @@
       </a-menu>
       <div class="nav_footer">
         <a href="javascript:;">
-          <icon @click="changeTheme" class="fun_icon">
-            <template #component>
-              <svg fill="currentColor">
-                <path :d="mdiThemeLightDark" />
-              </svg>
-            </template>
-          </icon>
+          <div class="fun_icon" @click="changeTheme">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path :d="mdiThemeLightDark" />
+            </svg>
+          </div>
         </a>
         <a href="https://github.com/ThreeBai" target="_blank">
-          <icon class="fun_icon">
-            <template #component>
-              <svg fill="currentColor">
-                <path :d="mdiGithub" />
-              </svg>
-            </template>
-          </icon>
+          <div class="fun_icon">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path :d="mdiGithub" />
+            </svg>
+          </div>
         </a>
         <a href="mailto:Sakatazwj@outlook.com">
-          <icon class="fun_icon">
-            <template #component>
-              <svg fill="currentColor">
-                <path :d="mdiEmail" />
-              </svg>
-            </template>
-          </icon>
+          <div class="fun_icon">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path :d="mdiEmail" />
+            </svg>
+          </div>
         </a>
       </div>
     </div>
@@ -67,7 +61,6 @@ import { Menu } from "@/router/index";
 import { useRouter, useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useStyleSettingStore } from "@/stores";
-import Icon from "@ant-design/icons-vue";
 import { mdiGithub, mdiEmail, mdiThemeLightDark } from "@mdi/js";
 import { ref } from "vue";
 
@@ -121,12 +114,10 @@ function changeTheme() {
   margin: 20px 0;
 }
 .fun_icon {
-  svg {
-    height: 24px;
-    width: 24px;
-  }
+  height: 28px;
+  width: 28px;
+  padding: 1px;
   &:hover {
-    padding: 1px;
     border: solid 1px;
     border-radius: 50%;
     cursor: pointer;

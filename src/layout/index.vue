@@ -2,8 +2,8 @@
   <a-config-provider :theme="themeConfig">
     <a-layout class="layout_wrapper">
       <LeftNav></LeftNav>
-      <a-layout>
-        <a-layout-content class="main_container">
+      <a-layout class="main_container">
+        <a-layout-content>
           <router-view></router-view>
         </a-layout-content>
         <FootBar></FootBar>
@@ -22,12 +22,12 @@ const { themeConfig } = storeToRefs(styleSettingStore);
 </script>
 <style scoped lang="less">
 .layout_wrapper {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 .main_container {
-  padding: 60px 30px 20px 30px;
+  margin-left: 280px;
+  padding: 60px 30px 0px 30px;
   min-width: 600px;
-  overflow: "initial";
+  overflow: auto;
 }
 </style>

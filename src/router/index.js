@@ -4,6 +4,7 @@ import Dashboard from "../views/Dashboard/index.vue";
 import GameCenter from "../views/GameCenter/index.vue";
 import LiquorFish from "../views/NeuroRoam/LiquorFish/index.vue";
 import RussianLiterature from "../views/NeuroRoam/RussianLiterature/index.vue";
+import PersonalArea from "../views/NeuroRoam/PersonalArea/index.vue";
 import { mdiHome, mdiGamepadVariantOutline, mdiBookshelf, mdiTelevisionClassic } from "@mdi/js";
 
 const MainRoutes = [
@@ -38,11 +39,11 @@ const MainRoutes = [
         }
       },
       {
-        path: "liquorfish",
-        name: "liquorfish",
-        component: LiquorFish,
+        path: "personalarea",
+        name: "personalarea",
+        component: PersonalArea,
         meta: {
-          label: "liquorfish"
+          label: "PersonalArea"
         }
       }
     ],
@@ -64,7 +65,14 @@ const router = createRouter({
       path: "/",
       name: "MainView",
       component: Layout,
-      children: MainRoutes
+      children: [
+        ...MainRoutes,
+        {
+          path: "/liquorfish",
+          name: "liquorfish",
+          component: LiquorFish
+        }
+      ]
     }
     // {
     //   path: '/about',

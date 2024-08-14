@@ -5,6 +5,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import setupPlugins from "@/plugins";
+import "@/utils/permission";
 
 const app = createApp(App);
 

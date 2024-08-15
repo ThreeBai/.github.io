@@ -21,6 +21,7 @@ import { reactive, ref } from "vue";
 import MD5 from "crypto-js/md5";
 import { useRouter } from "vue-router";
 import Cookies from "js-cookie";
+import { message } from "ant-design-vue";
 
 const Router = useRouter();
 const formRef = ref();
@@ -36,7 +37,7 @@ const onCheck = async () => {
       Cookies.set("cypher_one", afterMd5);
       Router.push({ name: "liquorfish" });
     } else {
-      console.log("password erroer");
+      message.error("Password error");
     }
   } catch (errorInfo) {
     console.log("Failed:", errorInfo);

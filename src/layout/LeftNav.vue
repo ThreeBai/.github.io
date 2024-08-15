@@ -1,10 +1,14 @@
 <template>
-  <a-layout-sider width="280" theme="light" style="height: 100vh; position: fixed">
+  <a-layout-sider
+    width="280"
+    theme="light"
+    style="height: 100vh; position: fixed; overflow-y: auto"
+  >
     <div class="sider_wrapper">
       <div class="nav_header">
         <img id="avatar_img" src="/src/assets/avatar.jpg" />
         <h1 class="owner_name">ThreeBai</h1>
-        <p class="owner_intro">welcome to my internet villa</p>
+        <p class="owner_intro">welcome to my villa online</p>
       </div>
       <a-menu v-model:selectedKeys="currentRoute" mode="inline" style="flex-grow: 1">
         <template v-for="item in Menu">

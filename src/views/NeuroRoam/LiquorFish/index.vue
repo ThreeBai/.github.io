@@ -1,23 +1,39 @@
 <template>
-  <div>
+  <div class="contant_wrapper">
     <div class="right_nav">
       <a-anchor :affix="false" :items="anchorItems" @click="handleAnchorClick"></a-anchor>
     </div>
     <div id="shorttext">
-      <div id="bravepeople">勇敢</div>
-      <div id="myparents">我的</div>
+      <div id="bravepeople">
+        <v-md-preview :text="braveMDT"></v-md-preview>
+      </div>
+      <div id="myparents">
+        <v-md-preview :text="parentsMDT"></v-md-preview>
+      </div>
+      <div id="carefordie">
+        <v-md-preview :text="carefordieMDT"></v-md-preview>
+      </div>
+    </div>
+    <div id="girls">
+      <v-md-preview :text="girlsMDT"></v-md-preview>
     </div>
     <div id="endlesscanon">
       <v-md-preview :text="endlessCanonMDT"></v-md-preview>
     </div>
-    <div id="bfishinsky">2222</div>
+    <div id="bfishinsky">
+      <v-md-preview :text="fishMDT"></v-md-preview>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import endlessCanonMDT from "./endlessCanon.md?raw";
-
+import braveMDT from "./brave.md?raw";
+import parentsMDT from "./parents.md?raw";
+import carefordieMDT from "./carefordie.md?raw";
+import girlsMDT from "./girls.md?raw";
+import fishMDT from "./bfishinsky.md?raw";
 const anchorItems = ref([
   {
     key: "1",
@@ -25,16 +41,26 @@ const anchorItems = ref([
     title: "短篇",
     children: [
       {
-        key: "3_1",
+        key: "1_1",
         href: "#bravepeople",
         title: "勇敢的人用刀剑"
       },
       {
-        key: "3_2",
+        key: "1_2",
         href: "#myparents",
-        title: "我的父亲和母亲"
+        title: "我的父亲母亲"
+      },
+      {
+        key: "1_2",
+        href: "#carefordie",
+        title: "临终关怀"
       }
     ]
+  },
+  {
+    key: "2",
+    href: "#girls",
+    title: "33号女子宿舍"
   },
   {
     key: "3",
@@ -42,7 +68,7 @@ const anchorItems = ref([
     title: "无终卡农"
   },
   {
-    key: "2",
+    key: "4",
     href: "#bfishinsky",
     title: "天空上的香蕉鱼"
   }
@@ -55,6 +81,9 @@ function handleAnchorClick(e, link) {
 </script>
 
 <style lang="less" scoped>
+.contant_wrapper {
+  padding: 10px 210px 0px 30px;
+}
 .right_nav {
   padding: 10px;
   position: fixed;

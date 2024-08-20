@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 import { message } from "ant-design-vue";
 
 router.beforeEach((to, from, next) => {
-  console.log("beforeEach route", to, from);
   if (to.name === "liquorfish" && !Cookies.get("cypher_one")) {
     message.warning("Permission denied");
     next({ path: "/" });

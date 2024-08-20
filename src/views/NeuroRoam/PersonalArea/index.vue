@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <a-form ref="formRef" :model="formState" name="dynamic_rule">
+  <div class="wrapper">
+    <a-form ref="formRef" :model="formState" name="dynamic_rule" layout="inline">
       <a-form-item
         label="Enter ur password"
         name="cardCypher"
         :rules="[{ required: true, message: 'Please input your password!' }]"
       >
-        <a-input-password v-model:value="formState.cardCypher" />
+        <a-input-password v-model:value="formState.cardCypher" style="width: 240px" />
       </a-form-item>
-
       <a-form-item>
         <a-button type="primary" @click="onCheck">Check</a-button>
       </a-form-item>
@@ -45,4 +44,12 @@ const onCheck = async () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+</style>

@@ -9,7 +9,7 @@
         <a-input-password v-model:value="formState.cardCypher" style="width: 240px" />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" @click="onCheck">Check</a-button>
+        <StarButton @click="onCheck"></StarButton>
       </a-form-item>
     </a-form>
   </div>
@@ -21,6 +21,7 @@ import MD5 from "crypto-js/md5";
 import { useRouter } from "vue-router";
 import Cookies from "js-cookie";
 import { message } from "ant-design-vue";
+import StarButton from "./components/StarButton.vue";
 
 const Router = useRouter();
 const formRef = ref();
@@ -44,7 +45,7 @@ const onCheck = async () => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .wrapper {
   display: flex;
   justify-content: center;
